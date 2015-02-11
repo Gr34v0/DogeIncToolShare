@@ -1,0 +1,55 @@
+{% extends "DogeIncToolShare/base.html" %}
+
+{% block contentHead %}
+        Profile
+{% endblock %}
+
+{% block content %}
+
+<form class="form-horizontal" action="/users/profile/" method="post">
+        {{ form.non_field_errors }}
+    <div class="form-group">
+        {{ form.first_name.errors }}
+        <label for="id_first_name" class="col-sm-2 control-label">First name</label>
+        <div class="col-sm-5">
+            <input class="form-control" placeholder="First" id="id_first_name" maxlength="30" name="first_name" type="text" value="{{ activeuser.first_name }}" />
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form.last_name.errors }}
+        <label for="id_last_name" class="col-sm-2 control-label">Last name</label>
+        <div class="col-sm-5">
+            <input class="form-control" placeholder="Last" id="id_last_name" maxlength="30" name="last_name" type="text" value="{{ activeuser.last_name }}"/>
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form.email.errors }}
+        <label for="id_email" class="col-sm-2 control-label">E-mail</label>
+        <div class="col-sm-5">
+            <input class="form-control" placeholder="Email" id="id_email" name="email" type="email" value="{{ activeuser.email }}"/>
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form.address.errors }}
+        <label for="id_address" class="col-sm-2 control-label">Pickup Address</label>
+        <div class="col-sm-5">
+            <input class="form-control" placeholder="Pickup Address" id="id_address" maxlength="40" name="address" type="text" value="{{ activeuser.address }}"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="button" onclick="history.back()" class="btn btn-default" value="Cancel">Cancel</button>
+          <button type="submit" class="btn btn-default" value="update-now">update</button>
+        </div>
+    </div>
+</form>
+
+<a href="/users/security">Advanced</a>
+
+{% endblock %}
+
+<!--<p><label for="id_first_name">First name:</label> <input id="id_first_name" maxlength="30" name="first_name" type="text" /></p>-->
+<!--<p><label for="id_last_name">Last name:</label> <input id="id_last_name" maxlength="30" name="last_name" type="text" /></p>-->
+<!--<p><label for="id_email">E-mail:</label> <input id="id_email" name="email" type="email" /></p>-->
+<!--<p><label for="id_zipcode">Zipcode:</label> <input id="id_zipcode" maxlength="5" name="zipcode" type="text" /></p>-->
+<!--<p><label for="id_address">Address:</label> <input id="id_address" maxlength="40" name="address" type="text" /></p>-->

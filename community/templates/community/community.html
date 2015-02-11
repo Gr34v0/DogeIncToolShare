@@ -1,0 +1,36 @@
+{% extends "DogeIncToolShare/base.html" %}
+
+{% block contentHead %}
+        {% if user_community.id != 0 %}
+            {{ user_community.name }}
+        {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% if user_community.id == 0 %}
+        <p>You have not been registered in a community yet, please <a href="join/">join a community</a> or <a href="register/">create a new community</a> to continue.</p>
+    {% else %}
+        {% if community_members.count > 0 %}
+            Community Members:<p></p>
+            {% for member in community_members %}
+            <p>
+                {{ member.username }}
+            </p>
+            {% endfor %}
+            {% endif %}
+        {% if activeuser.is_admin %}
+            {% if pending_community_members.count > 0 %}
+                Pending Members:
+                {% for member in pending_community_members %}
+                <p>
+                    {{ member.username }}
+                </p>
+                {% endfor %}
+            {% endif %}
+        {% endif %}
+
+        <p><a href="join/">Join a different community</a></p>
+        <p><a href="register/">Create a new community</a></p>
+     {% endif%}
+
+{% endblock %}

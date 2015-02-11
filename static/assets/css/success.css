@@ -1,0 +1,17 @@
+body {
+    background-color: #000000;
+}
+#content {
+    text-align: center;
+    background-color: #481036;
+    align-content: center;
+    border: 2px solid #DD4814;
+    color: #FFFFFF;
+    position:absolute;
+    width:300px;
+    height:200px;
+    z-index:15;
+    top:50%;
+    left:50%;
+    margin:-100px 0 0 -150px;
+}

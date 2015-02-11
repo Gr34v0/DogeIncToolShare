@@ -1,0 +1,12 @@
+{% extends "DogeIncToolShare/base.html" %}
+
+{% block contentHead %}
+
+{% if activeuser.is_authenticated %}
+    Welcome {{activeuser}}!
+    <!--<p> <a href="/user_register/logout/">Log Out</a>-->
+{% else %}
+    Welcome to ToolShare!
+{% endif %}
+{% endblock %}
+

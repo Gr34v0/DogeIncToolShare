@@ -1,0 +1,43 @@
+{% extends "DogeIncToolShare/base.html" %}
+
+{% block contentHead %}
+        Tools in your community
+{% endblock %}
+
+{% block content %}
+
+{% if tools.count > 0 %}
+<table class="table table-striped" align="center">
+    <tr>
+        <th>
+            <p>Tool Type</p>
+        </th>
+        <th>
+            <p>Owner</p>
+        </th>
+        <th>
+            <p>Description</p>
+        </th>
+    </tr>
+{% for tool in tools %}
+    <tr>
+        <!--{% if tool.owner.id != activeuser.id and tool.available == True %}-->
+        <td>
+            <a href="/tools/{{ tool.id }}/">{{ tool.tool_type }}</a>
+        </td>
+        <th>
+            <p>{{ tool.owner.username }}</p>
+        </th>
+        <td>
+            <p>{{ tool.description }}</p>
+        </td>
+        <!--{% endif %}-->
+    </tr>
+{% endfor %}
+</table>
+{% else %}
+        <p>There are no tools available for you to borrow in your community.</p>
+        <button onclick="location.href='/tools/tool_register/'">Register New Tool</button>
+{% endif %}
+
+{% endblock %}

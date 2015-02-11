@@ -1,0 +1,22 @@
+{% load static %}
+<html>
+    <head>
+        <title>Success</title>
+    </head>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/success.css' %}">
+    <meta http-equiv="refresh" content="3;url=/home/" />
+
+    <body>
+        <div id="content">
+        {% block content %}
+
+        <meta http-equiv="refresh" content="3;url=/home/" />
+        <h1>Success!</h1>
+        <br>
+        <h3>Redirecting in 3 seconds...</h3>
+
+        {% endblock %}
+        </div>
+    </body>
+</html>

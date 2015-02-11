@@ -1,0 +1,80 @@
+{% extends "DogeIncToolShare/base.html" %}
+
+{% block contentHead %}
+        My Tools
+{% endblock %}
+
+{% block content %}
+
+{% if tools.count > 0 %}
+<table class="table table-striped" align="center">
+    <tr>
+        <th>
+            <p>Tool Type</p>
+        </th>
+        <th>
+            <p>Description</p>
+        </th>
+        <th>
+            <p>Available?</p>
+        </th>
+    </tr>
+{% for tool in tools %}
+    <tr>
+        <td>
+            <a href="/tools/{{ tool.id }}/">{{ tool.tool_type }}</a>
+        </td>
+        <td>
+            <p>{{ tool.description }}</p>
+        </td>
+        <td>
+            <p>{{ tool.available }}</p>
+        </td>
+    </tr>
+{% endfor %}
+    <tr>
+        <td>
+            <button class="btn btn-default" onclick="location.href='/tools/tool_register/'">New Tool</button>
+        </td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+{% else %}
+        <p>You have no registered tools</p>
+        <button onclick="location.href='/tools/tool_register/'">Register New Tool</button>
+{% endif %}
+
+{% if borrowed_tools.count > 0 %}
+    <p>Borrowed Tools</p>
+    <table class="table table-striped" align="center">
+        <tr>
+            <th>
+                <p>Tool Type</p>
+            </th>
+            <th>
+                <p>Description</p>
+            </th>
+            <th>
+                <p>Owner</p>
+            </th>
+        </tr>
+        {% for tool in borrowed_tools %}
+            {% if tool.owner.id != activeuser.id %}
+            <tr>
+                <td>
+                    <a href="/tools/{{ tool.id }}/">{{ tool.tool_type }}</a>
+                </td>
+                <td>
+                    <p>{{ tool.description }}</p>
+                </td>
+                <td>
+                    <p>{{ tool.owner.username }}</p>
+                </td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+{% endif %}
+
+{% endblock %}

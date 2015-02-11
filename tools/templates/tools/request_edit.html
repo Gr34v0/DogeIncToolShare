@@ -1,0 +1,27 @@
+{% extends "DogeIncToolShare/base.html" %}
+
+
+{% block contentHead %}
+
+ Edit Tool Request
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<form action="/tools/request_edit/{{ tool_request.id }}/" method="post" enctype="multipart/form-data">
+
+        <p><label for="id_duration">Duration:</label>
+        <input id="id_duration" name="duration" type="hidden" />
+        <input id="id_sender" name="sender" type="hidden" />
+        <input id="id_receiver" name="receiver" type="hidden"/>
+        <input id="id_tool" name="tool" type="hidden" />
+        <input id="id_accepted" name="accepted" type="checkbox"/></p>
+
+        <input type="button" onclick="history.back();" value="Cancel">
+        <input type="submit" name="submit" value="edit request">
+</form>
+
+{% endblock %}

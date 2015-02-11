@@ -1,0 +1,65 @@
+{% extends "DogeIncToolShare/base.html" %}
+
+{% block contentHead %}
+        {{ tool.tool_type }}
+{% endblock %}
+
+{% block content %}
+
+<table class="table">
+    <tr>
+        <th>
+            <p>Type: {{ tool.tool_type }}</p>
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <td>
+            <p>Owner: {{ tool.owner.username }}</p>
+        </td>
+        <td>
+            <p>Description: {{ tool.description }}</p>
+        </td>
+        <td>
+        Availability:
+        {% if tool.available == False and tool.curr_holder != tool.owner.id %}
+            Currently Borrowed
+        {% elif tool.available == False and tool.curr_holder == tool.owner.id %}
+            Unavailable
+        {% else %}
+            Available
+        {% endif %}
+        </td>
+        {% if activeuser.id == tool.owner.id and tool.curr_holder == tool.owner.id %}
+        <td>
+            <a href="/tools/tool_edit/{{ tool.id }}/">Edit</a>
+        </td>
+        {% elif activeuser.id == tool.owner.id and tool.curr_holder != tool.owner.id %}
+        <td>
+            Can't be edited right now.
+        </td>
+        {% endif %}
+    </tr>
+    <tr>
+        {% if tool.available == True and tool.owner.id != activeuser.id %}
+        <td>
+            <a href="/tools/borrow/{{ tool.id }}/">Borrow</a>
+        </td>
+        {% endif %}
+
+        {% if tool.available == False and tool.curr_holder == activeuser.id %}
+        <td>
+            <a href="/tools/return/{{ tool.id }}/">Return</a>
+        </td>
+        {% elif tool.available == False and tool.owner.id == activeuser.id %}
+        <td>
+            <a href="/tools/return/{{ tool.id }}/">Return</a>
+        </td>
+        {% endif %}
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+
+{% endblock %}

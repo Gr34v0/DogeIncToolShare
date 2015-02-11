@@ -1,0 +1,47 @@
+{% extends "DogeIncToolShare/base.html" %}
+
+{% block contentHead %}
+       {{ activeuser }}, Please Register a Tool
+{% endblock %}
+
+{% block content %}
+
+<form class="form-horizontal" action="/tools/tool_register/" method="post" enctype="multipart/form-data">
+    {{ form.non_field_errors }}
+    <div class="form-group">
+        {{ form.tool_type.errors }}
+        <label for="id_tool_type" class="col-sm-2 control-label">Tool Type</label>
+        <div class="col-sm-5">
+            <input class="form-control" id="id_tool_type" maxlength="40" name="tool_type" type="text" />
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form.description.errors }}
+        <label for="id_description" class="col-sm-2 control-label">Description</label>
+        <div class="col-sm-5">
+            <input class="form-control" id="id_description" maxlength="100" name="description" type="text" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+                <label for="id_available">
+                    <div class="col-sm-5">
+                        <input id="id_available" name="available" type="checkbox" /> Available
+                    </div>
+                </label>
+            </div>
+        </div>
+    </div>
+    <!--Form needs a value for the hidden inputs to function properly-->
+    <input id="id_owner" name="owner" type="hidden" value="{{ activeuser.id }}"/>
+    <input id="id_curr_holder" name="curr_holder" type="hidden" value="{{ activeuser.id }}" />
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="button" onclick="history.back()" class="btn btn-default" value="Cancel">Cancel</button>
+          <button type="submit" class="btn btn-default" value="Create Tool">Create Tool</button>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

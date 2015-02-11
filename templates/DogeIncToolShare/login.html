@@ -1,0 +1,17 @@
+{% extends "DogeIncToolShare/base.html" %}
+
+        {% block content %}
+
+        <form action ="/users/auth/" method="post">{% csrf_token %}
+            <lable for="username">Username: </lable>
+            <input type="text" name="username" value="" id="username">
+            <lable for="password">Password: </lable>
+            <input type="password" name="password" value="" id="password">
+
+            <p><input type="submit" value="login" /></p>
+
+        </form>
+
+        <p><a href="/users/register/">Register New User</a> </p>
+
+        {% endblock %}
